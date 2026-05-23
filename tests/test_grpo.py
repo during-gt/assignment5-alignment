@@ -61,7 +61,7 @@ def test_compute_rollout_rewards(numpy_snapshot, reward_fn, rollout_responses, r
 
 def test_compute_group_normalized_rewards_grpo(numpy_snapshot, advantage_eps):
     raw_rewards = torch.tensor([1.0, 0.0, 0.0, 1.0])
-    advantages, returned_rewards, _ = compute_group_normalized_rewards(
+    advantages, _ = compute_group_normalized_rewards(
         raw_rewards=raw_rewards,
         group_size=2,
         baseline="mean",
@@ -72,19 +72,18 @@ def test_compute_group_normalized_rewards_grpo(numpy_snapshot, advantage_eps):
     numpy_snapshot.assert_match(
         {
             "advantages": advantages,
-            "raw_rewards": returned_rewards,
         }
     )
 
 
 def test_compute_group_normalized_rewards_drgrpo(numpy_snapshot):
-    advantages, _, _ = compute_group_normalized_rewards(
+    advantages, _ = compute_group_normalized_rewards(
         raw_rewards=torch.tensor([1.0, 0.0, 0.0, 1.0]),
         group_size=2,
         baseline="mean",
         advantage_normalizer="none",
     )
-    no_baseline_advantages, _, _ = compute_group_normalized_rewards(
+    no_baseline_advantages, _ = compute_group_normalized_rewards(
         raw_rewards=torch.tensor([1.0, 0.0, 0.0, 1.0]),
         group_size=2,
         baseline="none",
@@ -100,7 +99,7 @@ def test_compute_group_normalized_rewards_drgrpo(numpy_snapshot):
 
 
 def test_compute_group_normalized_rewards_maxrl(numpy_snapshot):
-    advantages, _, _ = compute_group_normalized_rewards(
+    advantages, _ = compute_group_normalized_rewards(
         raw_rewards=torch.tensor([1.0, 0.0, 0.0, 1.0]),
         group_size=2,
         baseline="mean",

@@ -123,7 +123,7 @@ def run_compute_group_normalized_rewards(
     baseline: Literal["mean", "none"] = "mean",
     advantage_eps: float = 1e-6,
     advantage_normalizer: Literal["std", "none", "mean"] = "std",
-) -> tuple[torch.Tensor, torch.Tensor, dict[str, float]]:
+) -> tuple[torch.Tensor, dict[str, float]]:
     """Compute advantages by applying the requested baseline and normalization
     within each group.
 
@@ -145,12 +145,9 @@ def run_compute_group_normalized_rewards(
             mean will mean divide by the per-group mean reward.
 
     Returns:
-        tuple[torch.Tensor, torch.Tensor, dict[str, float]].
+        tuple[torch.Tensor, dict[str, float]].
             advantages
                 shape (rollout_batch_size,). Group-normalized rewards for each
-                rollout response.
-            raw_rewards
-                shape (rollout_batch_size,). Unnormalized rewards for each
                 rollout response.
             metadata
                 your choice of other statistics to log (e.g. mean, std, max/min
