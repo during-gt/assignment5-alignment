@@ -7,7 +7,7 @@ from cs336_alignment.drgrpo_grader import r1_zero_reward_fn, question_only_rewar
 # Define vLLM server parameters
 VLLM_HOST = "127.0.0.1"
 VLLM_PORT = 8000
-model_id = "OLMo-2-0425-1B"
+model_id = "allenai/OLMo-2-0425-1B"
 
 sampling_params = {
     "temperature": 1.0,
@@ -28,7 +28,7 @@ PROMPT_FILES = {
 
 class prompt_grader:
     """
-    Evaluate OLMo-2-0425-1B on GSM8K with zero-shot question_only,
+    Evaluate allenai/OLMo-2-0425-1B on GSM8K with zero-shot question_only,
     zero-shot r1_zero, and few-shot r1_zero_three_shot prompts.
     """
 
@@ -44,24 +44,74 @@ class prompt_grader:
             self.template = f.read()
 
         # Build and start the server (start() must be called before generating).
-        self.vllm_server = vllm_utils.VLLMServer(model_id=model_id, host=VLLM_HOST, port=VLLM_PORT)
+        self.vllm_server = vllm_utils.VLLMServer(model_id=model_id, host=VLLM_HOST, port=VLLM_PORT, gpu_memory_utilization=0.4)
         self.vllm_server.start()
 
-    def _reward_fn(self):
-        return question_only_reward_fn if self.prompt_type == "question_only" else r1_zero_reward_fn
-
-    def grade(self, question: str, ground_truth: str) -> dict:
-        """Grade a single question; returns the reward dict."""
-        prompt = self.template.format(question=question)
-        completions = self.vllm_server.generate_completions([prompt], self.sampling_params)
-        return self._reward_fn()(completions[0].text, ground_truth)
 
     def grade_all(self, questions: list[str], ground_truths: list[str], batch_size: int = 64) -> list[dict]:
-        """Grade a batch of questions; returns one reward dict per question."""
+        """Grade a batch of questions; returns one record per question with the generation, ground truth, and the three reward components."""
         prompts = [self.template.format(question=q) for q in questions]
         completions = self.vllm_server.generate_completions(prompts, self.sampling_params, batch_size=batch_size)
-        reward_fn = self._reward_fn()
-        return [reward_fn(comp.text, gt) for comp, gt in zip(completions, ground_truths)]
+        reward_fn = question_only_reward_fn if self.prompt_type == "question_only" else r1_zero_reward_fn
+        records = []
+        for q, comp, gt in zip(questions, completions, ground_truths):
+            reward = reward_fn(comp.text, gt)
+            records.append({
+                "question": q,
+                "generation": comp.text,
+                "ground_truth": gt,
+                "format_reward": reward["format_reward"],
+                "answer_reward": reward["answer_reward"],
+                "reward": reward["reward"],
+            })
+        return records
+
+
+# The three mutually exclusive outcome categories.
+def categorize(record: dict) -> str:
+    if record["format_reward"] == 0.0:
+        return "format_wrong"                      # format_wrong
+    if record["answer_reward"] == 1.0:
+        return "format_ok_answer_ok"               # format_ok_answer_ok
+    return "format_ok_answer_wrong"                # format_ok_answer_wrong
+
+
+CATEGORY_LABELS = {
+    "format_ok_answer_ok": "format ok & answer ok",
+    "format_ok_answer_wrong": "format ok & answer wrong",
+    "format_wrong": "format wrong (no </think> <answer>...</answer>)",
+}
+
+
+def analyze(prompt_type: str, records: list[dict], n_examples: int = 10) -> None:
+    n = len(records)
+    buckets = {"format_ok_answer_ok": [], "format_ok_answer_wrong": [], "format_wrong": []}
+    for r in records:
+        buckets[categorize(r)].append(r)
+
+    answer_rate = sum(r["answer_reward"] for r in records) / n
+    format_rate = sum(r["format_reward"] for r in records) / n
+
+    print("\n" + "=" * 80)
+    print(f"[{prompt_type}]  answer accuracy: {answer_rate:.4f}   format rate: {format_rate:.4f}   (n={n})")
+    print("-" * 80)
+    for cat in ("format_ok_answer_ok", "format_ok_answer_wrong", "format_wrong"):
+        items = buckets[cat]
+        print(f"  {CATEGORY_LABELS[cat]:<40} {len(items):>5}  ({len(items)/n:.2%})")
+
+    # Show a few examples from each category.
+    for cat in ("format_ok_answer_ok", "format_ok_answer_wrong", "format_wrong"):
+        items = buckets[cat]
+        if not items:
+            continue
+        print(f"\n  ---- examples: {CATEGORY_LABELS[cat]} ----")
+        for r in items[:n_examples]:
+            gen = r["generation"].strip().replace("\n", " ")
+            if len(gen) > 400:
+                gen = gen[:400] + " ...[truncated]"
+            print(f"    GT={r['ground_truth']!r}")
+            print(f"    generation: {gen}")
+            print()
 
 
 def main():
@@ -77,13 +127,19 @@ def main():
     questions = [item["question"] for item in data]
     ground_truths = [item["ground_truth"] for item in data]
 
+    os.makedirs("eval_results", exist_ok=True)
     for prompt_type in ("question_only", "r1_zero", "r1_zero_three_shot"):
         grader = prompt_grader(prompt_type)
-        results = grader.grade_all(questions, ground_truths)
-        n = len(results)
-        accuracy = sum(r["answer_reward"] for r in results) / n
-        format_rate = sum(r["format_reward"] for r in results) / n
-        print(f"[{prompt_type}] answer accuracy: {accuracy:.4f}  format rate: {format_rate:.4f}  (n={n})")
+        records = grader.grade_all(questions, ground_truths)
+
+        # Dump full per-example records for later inspection / the write-up.
+        out_path = os.path.join("eval_results", f"{prompt_type}.jsonl")
+        with open(out_path, "w") as f:
+            for r in records:
+                f.write(json.dumps({**r, "category": categorize(r)}, ensure_ascii=False) + "\n")
+
+        analyze(prompt_type, records)
+        print(f"\n  (full records -> {out_path})")
 
 
 if __name__ == "__main__":
