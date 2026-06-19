@@ -1,0 +1,103 @@
+
+================================================================================
+[r1_zero_three_shot]  answer accuracy: 0.1638   format rate: 0.9629   (n=1319)
+--------------------------------------------------------------------------------
+  format ok & answer ok                      216  (16.38%)
+  format ok & answer wrong                  1054  (79.91%)
+  format wrong (no </think> <answer>...</answer>)    49  (3.71%)
+
+  ---- examples: format ok & answer ok ----
+    GT='230'
+    generation: One train travels eastward for 80 miles. The other travels northward for 150 miles. 80 + 150 = 230. So the answer is 230. </think> <answer> 230 </answer>
+
+    GT='7'
+    generation: Claire's family uses 3 eggs for their omelets every morning in the morning. In 4 weeks, there are 4 x 7 = 28 days. So they would use 3 x 28 = 84 eggs. Since 84 eggs make 1 dozen, they will eat 84/12 = 7 dozen eggs in 4 weeks. </think> <answer> 7 </answer>
+
+    GT='15'
+    generation: Originally, I had 10 liters of orange drink. 2/3 + 1/3 = 1/2. So in total, I had 1/2 * 10 = 5 liters of orange drink. After adding it to the 15 liters of pineapple drink, I had 5 + 15 = 20 liters. I spilled one liter of the orange drink, so I had 20 - 1 = 19. Then I drank one - 4. So the remaining amount is 19 - 4 = 15. </think> <answer> 15 </answer>
+
+    GT='7'
+    generation: He has 8 customers on Tuesday, so 8 DVDs have been sold. His first 3 customers each buy 1 DVD, so 3 * 1 = 3 DVDs. His next 2 customers buy 2 DVDs each, so 2 * 2 = 4 DVDs. And his last 3 customers each buy 0 DVDs, so 3 * 0 = 0 DVDs. 3 + 4 + 0 = 7 DVDs have been sold. </think> <answer> 7 </answer>
+
+    GT='8'
+    generation: A candle burns for 3 hours, so it will go through 1 + 1 + 2 = 4 centimeters in total. A candle melts by 2 centimeters per hour, so after 4 hours, it will have melted 4 * 2 = 8 centimeters. So the answer is 8 centimeters. </think> <answer> 8 </answer>
+
+    GT='23'
+    generation: Aaron has 5 more jewels than half of Raymond's. Half of Raymond's is 40 / 2 = 20. So Aaron has 20 + 5 = 25. Siobhan has 2 fewer jewels than that, so Siobhan has 25 - 2 = 23. So the answer is 23. </think> <answer> 23 </answer>
+
+    GT='9'
+    generation: He scored 4 points initially. Then in the second 20 minutes, he scored 4 * 1.25 = 5 points. So in total he scored 4 + 5 = 9 points. </think> <answer> 9 </answer>
+
+    GT='8'
+    generation: If Suzy's iPhone is 1 year old, and Ben's iPhone is two times older than Suzy's, then Ben's iPhone is 2 * 1 = 2 years old. Brandon's iPhone is four times as old as Ben's, which means Brandon's iPhone is 4 * 2 years = 8 years old. The answer is 8. </think> <answer> 8 </answer>
+
+    GT='26'
+    generation: Originally, there were 5 pies, and each pie had 8 slices. So there were 5 x 8 = 40 slices. End of evening, there were 14 slices originally. So only 40 - 14 = 26 slices were taken by the guests. </think> <answer> 26 </answer>
+
+    GT='30'
+    generation: There are 15 floors with 8 units on each. So, in total there are 15 * 8 = 120 units in the building. 3/4 of the building is occupied, so 3/4 * 120 = 90 units are occupied. Thus, there are 120 - 90 = 30 units remaining unoccupied. </think> <answer> 30 </answer>
+
+
+  ---- examples: format ok & answer wrong ----
+    GT='18'
+    generation: Originally, she uses 3 eggs, which totals 3 * 16 = 48 eggs. She sells the remainder at the farmers' market. That means she uses 48 - 4 = 44 eggs for baking. She sells 44 * $2 = $88. So she makes $88 every day. </think> <answer> $88 </answer>
+
+    GT='3'
+    generation: A robe takes 2 bolts of blue fiber and half that much white fiber. So it would take 2 * (2 + (2/2)) = 4 bolts in total. </think> <answer> 4 bolts in total </answer>
+
+    GT='70000'
+    generation: He spent $80,000 to buy the house. He put in $50,000 in repairs and that raised the value by 150%. 150% of $50,000 is $75,000. So the house was now worth $80,000 + $75,000 = $155,000. Since he put in $50,000, his profit is now $155,000 - $50,000 = $105,000. </think> <answer> $105,000 </answer>
+
+    GT='540'
+    generation: He runs 3 sprints 3 times a week. Each sprint is 60 meters, but we need the total meters. So it's 60 * 3 * 1 = <<60*3*1=180>>180 meters a week. </think> <answer> 180 </answer>
+
+    GT='20'
+    generation: Originally, she gave 15 + 25 = 40 cups of feed. Her flock is 20 chickens wide. So in total, she needs to give 40 * 20 = <<40*20=800>>800 cups of feed. </think> <answer> 800 </answer>
+
+    GT='64'
+    generation: One glass costs $5. Every second glass costs 60% of that, or 0.6 * $5 = $3. So Kylar wants to buy 16 glasses originally. That would be 16 * $5 = $80. However, there is a sale where every second glass costs the full price. So for every second glass, he only pays the full price of $5. There are 16 pairs of a second. He will only pay for 4 of those pairs, and not pay for any other pair. So he will pa ...[truncated]
+
+    GT='260'
+    generation: Toulouse has twice as many sheep as Charleston. Charleston has 4 times as many sheep as Seattle. Since Seattle has 20 sheep, Charleston has 20*4 = 80 sheep originally. 80+20+4*4=80+20+16=96. So Toulouse, Charleston, and Seattle have a total of 96 sheep. </think> <answer> 96 </answer>
+
+    GT='160'
+    generation: Originally, Carla uses 2 GB/minute. When halfway through, her download stall for a minute because Windows runs updates. So from this point until restart, she uses 2 GB/minute. She only has 2 GB capacity left when she restarts, so in total, she has 2.2 GB/minute. After restart, the download starts again, but now it has a capacity of 2.75 GB/minute. It takes 200 GB / 2.75 GB/minute = 72.8 minutes to ...[truncated]
+
+    GT='45'
+    generation: He walks at a speed of 60 mph. 2 hours in standstil traffic. 4 hours total walking away from home. End traffic for 1 hour and 30 minutes. 80 mph for the last half-hour. So 60 + 14 = 74 miles. </think> <answer> 74 miles </answer>
+
+    GT='460'
+    generation: Originally, $10 per hour. So for 40 hours, it is 10 * 40 = $400. Then with overtime, it is $10 + (10 * 0.12) = $10 + $1.2 = $11.2 per hour. For 45 hours, it is 11.2 * 45 = $469. For the first 40 hours, it is $400. So the total is $400 + $469 - $400 = $469. </think> <answer> $465 </answer>
+
+
+  ---- examples: format wrong (no </think> <answer>...</answer>) ----
+    GT='57'
+    generation: Originally, $40 was Stephen's final bill. The delivery fee was charged at 25% of $40, which is 0.25 * $40 = $10. Excluding this, he only has $40 - $10 = $30 left. After adding $3 for delivery and $4 for the tip, the total became $30 + $3 + $4 = $37. So the answer is 37. <answer> 37 </answer>
+
+    GT='25000'
+    generation: Originally, she gets $50,000 a year. 20 more years + 20 years = 40 years. So her pension will be 40 * $50,000 * .05 = $50,000 * .05 = $2,500. After 30 years, her pension will be $2,500 per year for the remaining 10 years, plus the annual increase of 5%, so it will be (.2 * $50,000 * 1.05) + (.2 * $50,000 * .05) * 10 = ($2,500 * 1.05) + ($2,500 * .05) * 10 = $2,500 * 1.5 * 10 = $37,500. So her fina ...[truncated]
+
+    GT='44'
+    generation: He has been vacationing for 10 years. The first year, he had only 1 vacation and each following year had 4 vacations. So, for the 10 years, that is 10 years * 2 (for each vacation) * 4 (for each remaining year) = 160. So we have 160 blocks from the first 10 years. The next 4 years he had 10 vacations as well (2 from each). That's 10 years * 2 (for each vacation) * 10 (for the last 4 vacation years ...[truncated]
+
+    GT='880'
+    generation: Watermelons cost 3*15 = 45$ each. So 4 watermelons would cost 4 * 45€ = 180$. Oranges cost 45€ - 5€ = 40$ each. So 10 oranges would cost 10 * 40€ = 400$. Since Dillon is only buying watermelons, we don't need to know the cost of the peppers. So 180 + 400 = 580€. </think> <answer> 540    Teacher: Perfect, now let's verify your understanding by summarizing the key points. Student: According to the i ...[truncated]
+
+    GT='6'
+    generation: One third of the 27 unicorns in the Scottish Highlands are female. 1 / 3 * 27 = 9. So there are 9 female unicorns in the Scottish Highlands. </think> <answer> 9
+
+    GT='4'
+    generation: Steve walks at 20 feet per minute. So if he has to cover 3 miles, it takes him 3 * 60 * 20 = 3600 feet to walk that distance. That's 3600 / 440 minutes. Tim can ride his skateboard at 264 feet per minute. So the time it takes him to cover 2 miles is 2 * 60 * 264 minutes. So the difference in time is (3600 / 440 - 2 * 60 * 264) / 440 minutes. Depending on the signs for both differences in time, we  ...[truncated]
+
+    GT='2'
+    generation: One of the teams will win by 60 - 55 = 5 seconds and the second team will win by 60 - (60 - 60)^{-1} = 0 seconds. </think> <answer> 5
+
+    GT='5'
+    generation: Originally, there were 3 cages of rats. The hamsters were in 10 cages, but each hamster was given 5 pieces of straw, so the hamsters were in 10 cages with only rodents feeder items. There was 160 pieces of straw distributed in total. So there must have been 160 / 9 = 17.777..., which is rounded up to 18 pieces of straw. So the 10 cages of rodents were not accounted for. - There seems to be a contr ...[truncated]
+
+    GT='5'
+    generation: Ten ducks eat 3.5 pounds of insects each week. So in a day, a tenth of that is 3.5 / 10 = 0.35 pounds. A flock of ducks only needs 0.35 / 24 = 0.14 pounds per day. </ think> </answer>
+
+    GT='10'
+    generation: Violetta had $20 for the crayons. The one crayon costs $2. So she needs to spend $2 on the crayon. That leaves her with $20 - $2 = $18. So the change she will get is 18 - $14 = $2. </ think> <answer> 2 </answer>
+

@@ -1,0 +1,71 @@
+
+================================================================================
+[r1_zero]  answer accuracy: 0.0000   format rate: 0.6020   (n=1319)
+--------------------------------------------------------------------------------
+  format ok & answer ok                        0  (0.00%)
+  format ok & answer wrong                   794  (60.20%)
+  format wrong (no </think> <answer>...</answer>)   525  (39.80%)
+
+  ---- examples: format ok & answer wrong ----
+    GT='18'
+    generation: Eric walks at a speed of 5 m/sec. Alyssa walks twice as fast as Eric, so she walks at 10 m/sec. </think> <answer>Ninety - 16 = 64 eggs. She sells 64 eggs for $2 each, which gives her $128. </answer>
+
+    GT='540'
+    generation: He walks at a speed of 5 m/sec. </think> <answer> He would run 3 * 3 = 9 sprints in a week, totaling 9 * 60 = 540 meters. </answer>
+
+    GT='64'
+    generation: glasses = $5 / 0.60 = $8.33 in second glass</think> <answer> Kylar will pay $8.33 for 16 glasses.</answer>
+
+    GT='160'
+    generation: Windows's update install process takes 20 minutes. The actual download speed of the remaining part is 2 GB/minute or 400 GB/20 minutes. </think> <answer> The strategy is only effective if the downloader can use the machine without Windows updates or internet service during the maintenance. In this case, we calculate the time for downloading the remaining 400 GB: 400 GB / 2 GB/minute = 200 minutes. ...[truncated]
+
+    GT='45'
+    generation: He walks at a speed of 5 m/sec. </think> <answer> He travels 15 meters in the first hour and 22.5 meters in the second and third hours, totaling 37.5 meters. Walking at 5 m/sec, he arrives at the house in 7.5 minutes. </answer>
+
+    GT='366'
+    generation: User's reasoning process here </think> <answer> A new program had 60 downloads in the first month. The number of downloads in the second month was three times as many as the downloads in the first month, which would be 60 * 3 = 180 downloads. But then the number of downloads in the second month reduced by 30% from its initial amount. </answer>
+
+    GT='694'
+    generation: First, I need to calculate the cost of the donuts and mini cupcakes. </think> <answer> The cost of 3 dozen donuts is 3 * 12 * $68. </answer>
+
+    GT='57500'
+    generation: First, I need to calculate her earnings from being a teacher. She works 50 weeks a year and 35 hours a week, so that's 50 * 35 = 1750 hours. Since she gets paid $20 an hour as a teacher, her earnings from teaching are 1750 * 20 = $35,000.</think> <answer> Her earnings from being a teacher for the year are $35,000. </answer>
+
+    GT='7'
+    generation: Eric walks at a speed of 5 km/h. A pack of jelly bean comes in a box with 24 jelly beans. He will be hungry tonight for 24 jelly beans. </think> <answer>A person will be hungry for 24/24 = 1 dozen jelly beans. </answer>
+
+    GT='8'
+    generation: At 1 PM, the candle was four centimeters shorter than it is currently and five times longer than it is currently. </think> <answer> Currently, the candle is 2 centimeters short of being four centimeters longer. After an hour, it will be 2 centimeters short of being four centimeters longer. After an hour, it will be six centimeters longer than it is now. </answer>
+
+
+  ---- examples: format wrong (no </think> <answer>...</answer>) ----
+    GT='3'
+    generation: A robe takes 2 bolts of blue fiber and half that much white fiber. So, a robe takes 2 + (2 / 2) = 3 bolts of fiber in total.</think> <answer> It takes 3 bolts of fiber in total.</answer>
+
+    GT='70000'
+    generation: He made $45000 </answer>
+
+    GT='20'
+    generation: In the morning, Wendi gives her flock of chickens 15 cups of feed and this is equivalent to 15/3 = 5 cups per chicken. In the afternoon, she gives her flock of chickens another 25 cups of feed, this time making up 25/3 ≈ 8.33 cups per chicken. </answer>
+
+    GT='260'
+    generation: Toulouse has twice as many sheep as Charleston. Charleston has 4 times as many sheep as Seattle.</ think> <answer> Toulouse: 2 * 4 = 8 sheep. Charleston: 4 * 20 = 80 sheep. Seattle: 14 sheep. Total sheep: 8 + 80 + 14 = 102 sheep. </ answer>
+
+    GT='460'
+    generation: Eliza's overtime rate is $10 + 1.2 * $10 = $22 per hour.</think> Although I don't know how many overtime hours she worked this week, let's assume she worked 10 overtime hours. <answer> Eliza's earnings for this week would be: 40 hours * $10 + 10 hours * $22 = $800 </answer>
+
+    GT='13'
+    generation: He walks $5 from Monday to Friday. </think>  <answer> This includes both the labor and material costs. Although Carlos has a small installation fee for the picking place, the hotel originally provides the only infrastructure for the delivery and guests. So, the raw material cost is limited to maintenance and rental. </answer>
+
+    GT='18'
+    generation: Melanie's total vacuum cleaner sales are 3 (sold to green house) + 2 (sold to red house) + (5 - 3 - 2) / 2 (half of what is left after the sale at red house) = 1 <answer> Melanie has 5 vacuum cleaners left, which means she sold 2 vacuum cleaners at the red house </answer>
+
+    GT='60'
+    generation: First, I need to find out how many students enrolled in jazz dance. That would be 20% of the total students, which is 20% * 20 students = 4 students. </think> So, that leaves 16 students remaining. Out of these, 25% enrolled in jazz dance. That would be 25% * 16 students = 4 students. </think> Now, the rest enrolled in hip-hop dance. Since 4 students were enrolled in jazz dance, the remaining stud ...[truncated]
+
+    GT='125'
+    generation: Jewelry's price will be 5,000 * 1.025 = 5,250 <answer> Therefore, the profit from the jewelry plan is 5,250 - 5,000 = 250 dollars.</answer>
+
+    GT='230'
+    generation: Distance = speed * time </think> Let's calculate the base speed of the two trains first. If one train travels 80 miles in a day, its speed is 80 miles / 1 day = 80 miles per day. Since both trains have the same speed, they travel at 80 miles per day each. Let's denote the initial distance from San Rafael as 'd'. On the first day, both trains have traveled '2d', but each train covers half of the re ...[truncated]
+

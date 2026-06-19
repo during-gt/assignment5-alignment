@@ -83,7 +83,7 @@ CATEGORY_LABELS = {
 }
 
 
-def analyze(prompt_type: str, records: list[dict], n_examples: int = 10) -> None:
+def analyze(prompt_type: str, records: list[dict], n_examples: int = 10, out_path: str = None) -> None:
     n = len(records)
     buckets = {"format_ok_answer_ok": [], "format_ok_answer_wrong": [], "format_wrong": []}
     for r in records:
@@ -92,26 +92,34 @@ def analyze(prompt_type: str, records: list[dict], n_examples: int = 10) -> None
     answer_rate = sum(r["answer_reward"] for r in records) / n
     format_rate = sum(r["format_reward"] for r in records) / n
 
-    print("\n" + "=" * 80)
-    print(f"[{prompt_type}]  answer accuracy: {answer_rate:.4f}   format rate: {format_rate:.4f}   (n={n})")
-    print("-" * 80)
+    lines = []
+    lines.append("\n" + "=" * 80)
+    lines.append(f"[{prompt_type}]  answer accuracy: {answer_rate:.4f}   format rate: {format_rate:.4f}   (n={n})")
+    lines.append("-" * 80)
     for cat in ("format_ok_answer_ok", "format_ok_answer_wrong", "format_wrong"):
         items = buckets[cat]
-        print(f"  {CATEGORY_LABELS[cat]:<40} {len(items):>5}  ({len(items)/n:.2%})")
+        lines.append(f"  {CATEGORY_LABELS[cat]:<40} {len(items):>5}  ({len(items)/n:.2%})")
 
     # Show a few examples from each category.
     for cat in ("format_ok_answer_ok", "format_ok_answer_wrong", "format_wrong"):
         items = buckets[cat]
         if not items:
             continue
-        print(f"\n  ---- examples: {CATEGORY_LABELS[cat]} ----")
+        lines.append(f"\n  ---- examples: {CATEGORY_LABELS[cat]} ----")
         for r in items[:n_examples]:
             gen = r["generation"].strip().replace("\n", " ")
             if len(gen) > 400:
                 gen = gen[:400] + " ...[truncated]"
-            print(f"    GT={r['ground_truth']!r}")
-            print(f"    generation: {gen}")
-            print()
+            lines.append(f"    GT={r['ground_truth']!r}")
+            lines.append(f"    generation: {gen}")
+            lines.append("")
+
+    text = "\n".join(lines)
+    if out_path:
+        with open(out_path, "w") as f:
+            f.write(text + "\n")
+    else:
+        print(text)
 
 
 def main():
@@ -138,8 +146,8 @@ def main():
             for r in records:
                 f.write(json.dumps({**r, "category": categorize(r)}, ensure_ascii=False) + "\n")
 
-        analyze(prompt_type, records)
-        print(f"\n  (full records -> {out_path})")
+        analysis_path = os.path.join("eval_results", f"{prompt_type}_analysis.txt")
+        analyze(prompt_type, records, out_path=analysis_path)
 
 
 if __name__ == "__main__":

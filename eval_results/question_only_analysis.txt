@@ -1,0 +1,85 @@
+
+================================================================================
+[question_only]  answer accuracy: 0.0030   format rate: 0.1744   (n=1319)
+--------------------------------------------------------------------------------
+  format ok & answer ok                        4  (0.30%)
+  format ok & answer wrong                   226  (17.13%)
+  format wrong (no </think> <answer>...</answer>)  1089  (82.56%)
+
+  ---- examples: format ok & answer ok ----
+    GT='2'
+    generation: What's the final answer? Reasoning: Let's go through the problem step by step. First, John gets paid $2 per hour and works 5 hours a day. He works for 4 days a week. If he wants to save $80, let's find out how much he will earn in the week. He will earn $2 * 5 * 4 = $40 per week. Now, let's find out how many weeks will it take him to save $80. We will take $80 and divide it by the amount he earns  ...[truncated]
+
+    GT='80'
+    generation: What's the final answer? Reasoning: Let's call the length of the original dress a. If she extends it by 50% then its length increases to 1.5a originally. She then adds 20cm to that so it's 1.5a + 20. Since it's the full length now, we can say that 1.5a + 20 = 140. Subtracting 20 from each side gives us 1.5a = 120. Dividing both sides by 1.5 gives her the length of the original dress, 80cm.  Thus,  ...[truncated]
+
+    GT='3'
+    generation: What's the final answer? Reasoning: Let c be the price of each ear of corn. Then c = $$\frac{3c}{20}$$. The equation Solving the equation strategy=culminating with c = $$\frac{135 \cdot 14}{20}$$ c = 2.3$. Let him sell each ear of corn for c dollars. He can sell his eggplants and corn for 20*3 + 25*c= 60 + 25*c = \$135, thus 25*c - 60 = 135$$. so 25*c - 60 = 135$$. so 25c - 60 = \$135$. so 25c - 6 ...[truncated]
+
+    GT='64'
+    generation: What's the final answer? Reasoning: Let's go through the problem step by step. First, we need to find out how much money Colby earns for one hour. Since he completes 10 less than 50 packages in an hour. He completes 50 - 10 = 40 package.  And we are told that he gets paid $0.20 for each package. So his earnings per hour is 40 * $0.20 = $8.00 Now, we know that Colby works for a total of 8 hours. So ...[truncated]
+
+
+  ---- examples: format ok & answer wrong ----
+    GT='18'
+    generation: \\   *Remember students don’t have to use any variable to compute in their answers *No calculators please be creative!   Check out more worksheets on Algebra for students here.     1 . - strategy  2 . feeder items  3 . correct answers  4 . digital   1. ramona ate 4 avocados but she only bought 2. How many excess avocados did she eat? 1. - strategy  2. common denominator. Make each denominator have ...[truncated]
+
+    GT='694'
+    generation: What's the final answer? Reasoning: Let's go through each of the groups of items she bought to calculate the total cost.  Each dozen donuts cost $68, and Toula bought 3 dozen, so the total cost for the donuts is 3 * $68 = $204  Each dozen mini keys cost $80, and Toula bought 2 dozen, so the total cost for the mini keys is 2 * $80 = $160  Each dozen mini cheesecakes cost $55, and Toula bought 6 doz ...[truncated]
+
+    GT='125'
+    generation: $$  *Remember: don't round your numbers when doing these sorts of calculations! Keep everything in decimals to make them easy to work with. End result? About $\boxed{1.549009 \, \text{dollars}}\text{ profit}.$   We start with the simplest of these equations:  num\_jewels \* jewel_price = num_electronics \* electronics_price + num\_jewels \* jewell_gain  We rearrange terms so that everything except ...[truncated]
+
+    GT='230'
+    generation: $$  *Remember: don't forget to use parentheses and have all your answers within \\boxed{}*, just like NNNN!   First, let's write out the lengths of each train's journey strategy:  Trains 1 & 2 Train 1: $$d_1 = 80 + 80 = 160$$ Train 2: $${s_1} = 160 - 80 = 80$$  Since both trains started with the same initial speed (${{}}s\_1 = 80$ mph), it means that after 1 day, Train 1 will have traveled half th ...[truncated]
+
+    GT='57500'
+    generation: What's $45000? answer: You will receive $40000 in annual salary.   question: There are three events on May 15. Katie ran for 1 hour and 20 minutes, Mort only ran for 45 minutes, and Nick ran for 1 hour and 40 minutes. They had to wait 8 minutes for Mort, 0 minutes for the plane, and 11 minutes for their hotel. Write them within \\boxed{}. What time will they reach their hotel? answer: After the de ...[truncated]
+
+    GT='15'
+    generation: $$  I know water is $100\%$, zestly encourage in the comments"  Do not just list concepts, but develop each one in detail before moving to the next, as we prioritize depth of understanding and comprehensive exploration of the subject matter over breadth. Focus on:  - Rigor: Ensure in-depth coverage of the concepts/sections. - Engagement: Write with an academic, professional and engaging tone that  ...[truncated]
+
+    GT='26'
+    generation: 2023   \begin{minipage}{\textwidth} \begin{enumerate}[label=(\roman*)] \item How much did Kyle spend for this year's best-selling book? \item Kyle has $2377 left for books after spending $13814 on backpacks last year. How much money did Kyle use for books last year? \item Kyle bought last year's best-selling book for $19.50. \begin{enumerate}[label=(\roman*)] \item How much was the original price  ...[truncated]
+
+    GT='25'
+    generation: What's the final answer? Reasoning: Henry traveled 20 miles in the beginning and a total of 60 miles or 60 - 20 = 40 miles during this time.  An hour before the ferry feeder arrived, he left his machine 50 miles from its destination. How much time was there to the ferry feeder's arrival? Please put your final answer within \\boxed{}. What's the final answer? Step-by-step reasoning process: It took ...[truncated]
+
+    GT='2'
+    generation: What's the final answer? Reasoning: Let's analyze the problem in steps and solve it slowly:  1. John sells Lego sets for $15 each. 2. His total revenue from selling 13 Lego sets is 13 * 15 = 195 dollars. 3. He buys 8 video games for $20 each and buys them for 8 * 20 = 160 dollars. 4. He also has $5. 5. So, his total expenses including the $5 he spent on video games is 195 + 5 = 200 dollars. 6. He  ...[truncated]
+
+    GT='10'
+    generation: What's the final answer? Reasoning: Let's go through each of the two options and see where I should be.  So, it says how fast? It means how fast he runs per hour. So, if I put in L=3 hours, I do 60 / 3 and that's L. So, now I have L=20 miles per hour.  Now, it says how fast he runs on the other days. So, I know that he runs half as much. So, if it says he runs 3 hours on the other two days, that w ...[truncated]
+
+
+  ---- examples: format wrong (no </think> <answer>...</answer>) ----
+    GT='3'
+    generation: 
+
+    GT='70000'
+    generation: What's the final answer? answer: 50,000
+
+    GT='540'
+    generation: 
+
+    GT='20'
+    generation: What's the final answer? Reasoning: Let c represent the number of cups and x represent the number of chickens. 15c = x + 25x + 3x 0 = 37x x = 7 \boxed{ \mathbf{7} } \\(\\\boxed{ \num{7}} )  Math problem: A machine is filled up to 4/5 of its capacity every 5 minutes. It takes 15 minutes to fill up the machine completely. What’s the current capacity of the machine? Reasoning: 15 \frac{4}{5} \boxed{  ...[truncated]
+
+    GT='64'
+    generation: Solution: $26.00000000000001 Final answer to this problem: 26.666666666666664
+
+    GT='260'
+    generation: What's the final answer? Reasoning: Let c represent the number of sheep in Seattle and m represent the number of sheep in Toulouse. The given information may be written as: m = 4c and c = 20. Since Toulouse has twice as many sheep as Charleston, c = 2m. Thus: m = 2 \* 4c = 8c and m = 8c = 8 \* 20 = 160.  Thus: c + m + m = 160 + 20 + 160 = 240.  Since Toulouse has twice as many sheep as Seattle, 2c ...[truncated]
+
+    GT='160'
+    generation: \\   *Remember students don’t have to use any variable names, in this case both a and b are already available.  class Solution {         void downloadFileToDisk(string filename, int bytesToDownload, double downloadSpeed) {             double totalSize = 0;         int fileLength = new int[8]{{0, 0,0,0,0,0,0,0,0}};         int numOfWrappers = 7 - 4 - 1;         int totalSizeKernel = numOfWrappers * ...[truncated]
+
+    GT='45'
+    generation: 
+
+    GT='460'
+    generation: 
+
+    GT='366'
+    generation: 
+
