@@ -54,6 +54,7 @@ def tokenize_prompt_and_output(prompt_strs: list[str], output_strs: list[str], t
         "labels": labels,
         "response_mask": response_mask,
     }
+    # Previous wrong implementation:
     # batch_size = len(prompt_strs)
     # prompt_and_output_strs = [p + o for p, o in zip(prompt_strs, output_strs)]
     # tokenized = tokenizer(
