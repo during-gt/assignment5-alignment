@@ -168,3 +168,6 @@ cython_debug/
 *.DS_Store
 # Training artifacts
 wandb/
+# Keep training run logs even though *.log is ignored above
+!logs/
+!logs/*.log
