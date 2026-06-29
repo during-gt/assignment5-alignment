@@ -4,11 +4,20 @@ from typing import Callable
 from typing_extensions import Literal
 
 def get_model_and_tokenizer(model_id_or_dir: str, device: str):
+    if device == "cpu":
+        attn_implementation = "eager"
+    else:
+        # Prefer FlashAttention2, but fall back to PyTorch SDPA if it isn't installed.
+        try:
+            import flash_attn  # noqa: F401
+            attn_implementation = "flash_attention_2"
+        except ImportError:
+            attn_implementation = "sdpa"
     model = AutoModelForCausalLM.from_pretrained(
         model_id_or_dir,
         device_map=device,
         torch_dtype=torch.bfloat16,
-        attn_implementation="eager" if device=='cpu' else "flash_attention_2",
+        attn_implementation=attn_implementation,
     )
     tokenizer = AutoTokenizer.from_pretrained(model_id_or_dir)
     return model, tokenizer
@@ -206,7 +215,7 @@ def compute_policy_gradient_loss(raw_rewards_or_advantages: torch.Tensor,
     # reshape to (rollout_batch_size, 1) so it broadcasts across sequence length
     advantages = raw_rewards_or_advantages.view(-1, 1)
     if importance_reweighting_method == "none":
-        loss = -(advantages * policy_log_probs)  # (batch_size, seq_length)
+        loss = -(advantages * policy_log_probs)  # (rollout_batch_size, seq_length)
 
     metadata = {"mean_loss": loss.mean().item()}
     return loss, metadata
